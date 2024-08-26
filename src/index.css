@@ -13,7 +13,11 @@
   
   body {
     /* @apply bg-[url(imgs/vibe-background.jpg)] bg-cover bg-no-repeat overflow-x-hidden; */
-    @apply bg-[url(imgs/vibe-background.jpg)] bg-cover bg-no-repeat;
+    @apply h-screen bg-[url(imgs/vibe-background.jpg)] bg-cover bg-no-repeat;
+  }
+
+  .app {
+    @apply h-screen;
   }
 }
 
