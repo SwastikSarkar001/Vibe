@@ -31,6 +31,10 @@ export default function SignInDialog({ change }) {
 	const signIn = () => {
 		console.log('object')
 	}
+	const signInWithGoogle = (e) => {
+		e.preventDefault()
+		signInWithPopup(auth, googleProvider).then(() => console.log('Signed In with Google')).catch(e => console.error(e))
+	}
 
 	return (
 		<div className='flex flex-col items-center justify-center min-h-full gap-5'>
@@ -63,7 +67,7 @@ export default function SignInDialog({ change }) {
 			</div>
 			<div className='w-3/5 px-8'>
 				<div className='grid grid-cols-2 gap-4'>
-					<PrimaryBtn onClick={signIn}>
+					<PrimaryBtn onClick={signInWithGoogle}>
 						<div><GrGoogle /></div>
 						<div>Google</div>
 					</PrimaryBtn>
