@@ -5,6 +5,7 @@ import { GrLogin, GrGoogle, GrGithub, GrFacebookOption, GrLinkedin } from "react
 import PrimaryBtn from './utilities/PrimaryBtn'
 import { auth, googleProvider, facebookProvider, githubProvider } from '../../firebase.config'
 import { signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth'
+import { toast } from 'react-toastify';
 
 export default function SignInDialog({ change }) {
 	const initValues = {
@@ -26,14 +27,38 @@ export default function SignInDialog({ change }) {
 	}
 	const checkCredentials = (e) => {
 		e.preventDefault()
-		signInWithEmailAndPassword(auth, values.username+'@vibe.com', values.password).then(({ user }) => console.log(user)).catch(e => console.error(e))
+		const signInPromise = signInWithEmailAndPassword(auth, values.username+'@vibe.com', values.password)
+		toast.promise (
+			signInPromise, {
+				pending: 'Please Wait',
+				success: 'Logged In successfully',
+				error: {
+					render ({ data: error }) {
+						const errorMsg = error.code.split('auth/')[1]
+						return `Error: ${errorMsg}`
+					}
+				}
+			}
+		)
 	}
 	const signIn = () => {
 		console.log('object')
 	}
 	const signInWithGoogle = (e) => {
 		e.preventDefault()
-		signInWithPopup(auth, googleProvider).then(() => console.log('Signed In with Google')).catch(e => console.error(e))
+		const signInPromise = signInWithPopup(auth, googleProvider)
+		toast.promise (
+			signInPromise, {
+				pending: 'Please Wait',
+				success: 'Signed In with Google',
+				error: {
+					render ({ data: error }) {
+						const errorMsg = error.code.split('auth/')[1]
+						return `Error: ${errorMsg}`
+					}
+				}
+			}
+		)
 	}
 
 	return (

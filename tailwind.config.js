@@ -33,10 +33,10 @@ export default {
       ),
       addComponents({
         '.selected .child': {
-          '@apply !top-[-1.5rem] !translate-y-0 text-sm !text-white !left-0': {}
+          '@apply !top-[-1.5rem] !translate-y-0 text-sm text-white !left-0': {}
         },
         '.has-data.child': {
-          '@apply !top-[-1.5rem] !translate-y-0 text-sm !text-white !left-0': {}
+          '@apply !top-[-1.5rem] !translate-y-0 text-sm text-white !left-0': {}
         }
       })
     }),
